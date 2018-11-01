@@ -1,0 +1,36 @@
+package com.javarush.task.task28.task2812;
+
+import java.util.List;
+import java.util.ListIterator;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+/* 
+ShutdownNow!
+*/
+
+public class Solution {
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for (int i = 1; i <= 10; i++) {
+            final int localId = i;
+            executor.submit(new Runnable() {
+                public void run() {
+                    doExpensiveOperation(localId);
+                }
+            });
+        }
+
+
+        ListIterator<Runnable> list = executor.shutdownNow().listIterator();
+        for (ListIterator<Runnable> it = list; it.hasNext(); ) {
+            Runnable task = it.next();
+            System.out.println(task.toString() + " was not completed");
+
+        }
+    }
+
+    private static void doExpensiveOperation(int localId) {
+        System.out.println(Thread.currentThread().getName() + ", localId="+localId);
+    }
+}

@@ -1,0 +1,10 @@
+taskKey="com.javarush.task.task21.task2102"
+
+Сравниваем модификаторы
+
+Реализовать логику метода isAllModifiersContainSpecificModifier, который проверяет,
+содержит ли переданный параметр allModifiers значение конкретного модификатора specificModifier.
+
+P.S. Перед выполнением задания ознакомься с классом Modifier и реализацией методов isPublic, isStatic и т.п.
+
+
